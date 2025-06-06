@@ -1,4 +1,5 @@
 from time import sleep
+from operator import itemgetter
 tarefa_dic = dict()
 tarefa= list()
 while True:
@@ -12,7 +13,7 @@ while True:
     if(opc ==1):
         while True:
             tarefa_dic['tarefas'] = input("Qual sua tarefa: ")
-            tarefa_dic['status'] = False
+            tarefa_dic['status'] = 'Não concluido'
             tarefa.append(tarefa_dic.copy())##Tem q fazer copia, o py faz 'ligação' n copia
             tarefa_dic.clear()
             print('Adicionando Tarefa ...')
@@ -33,9 +34,24 @@ while True:
         print()
         print()
     elif(opc == 3):
-        print("Qual tarefa foi concluida: ")
+        print()
         for i, v in enumerate(tarefa):
             print(f'{i+1}. {v}')
-        status
-
+        status= int(input("Qual tarefa foi realizada: "))
+        if 0 < status <= len(tarefa):
+            tarefa[status - 1]['status'] = 'Concluido'
+        else:
+             print("Número de tarefa inválido.")
+    elif(opc == 4):
+        for i, v in enumerate(tarefa):
+            print(f'{i+1}. {v}')
+        remover= int(input("Qual tarefa deseja remover") - 1)
+        if 0 < remover <= len(tarefa):
+            tarefa.pop(remover - 1)
+        else:
+            print("Número inválido.")
+    else:
+        print('saindo...',end='')
+        sleep(1.6)
+        break
 
