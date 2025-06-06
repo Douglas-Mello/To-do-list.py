@@ -18,21 +18,26 @@ while True:
             tarefa_dic.clear()
             print('Adicionando Tarefa ...')
             sleep(1.3)
-            cont=input('Quer adicionar outra tarefa[s/n]: ')
+            while True:
+                cont=input('Quer adicionar outra tarefa[s/n]: ').strip().lower()
+                if cont in 'sn':
+                    break
+                print("Opção inválida somente [s/n]")
+
             if(cont[0] in 'Nn'):
                 print()
                 break
-            
-        
+                    
     elif( opc == 2):
         print()
         print("Suas tarefas: ")
         for i, v in enumerate(tarefa):
-            print(f'{i+1}. {v}')
+            print(f'{i+1}. {v['tarefas']} ==> {v['status']}')
             sleep(1)
         sleep(1)
         print()
         print()
+
     elif(opc == 3):
         print()
         for i, v in enumerate(tarefa):
@@ -42,6 +47,7 @@ while True:
             tarefa[status - 1]['status'] = 'Concluido'
         else:
              print("Número de tarefa inválido.")
+
     elif(opc == 4):
         for i, v in enumerate(tarefa):
             print(f'{i+1}. {v}')
@@ -50,6 +56,7 @@ while True:
             tarefa.pop(remover - 1)
         else:
             print("Número inválido.")
+            
     else:
         print('saindo...',end='')
         sleep(1.6)
