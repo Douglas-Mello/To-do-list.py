@@ -1,25 +1,26 @@
 from time import sleep
 from operator import itemgetter
 tarefa_dic = dict()
-tarefa= list()
+tarefa = list()
 while True:
     print("===  Menu de opções:  ====")
     print("1.Adicionar Tarefa \n2.Ver tarefas\n3.Conclui uma tarefa\n4.Remover tarefa\n5.Sair")
-    opc=int(input('Escolha uma opção: '))
+    opc = int(input('Escolha uma opção: '))
     if(opc not in range(1,6)):
         print("\n     ERRO!!!  \n     opção inválida")
         print()
         sleep(1.5)
-    if(opc ==1):
+    if(opc == 1):
         while True:
+            print()
             tarefa_dic['tarefas'] = input("Qual sua tarefa: ")
             tarefa_dic['status'] = 'Não concluido'
-            tarefa.append(tarefa_dic.copy())##Tem q fazer copia, o py faz 'ligação' n copia
+            tarefa.append(tarefa_dic.copy())  # Tem que fazer cópia, o py faz 'ligação', não cópia
             tarefa_dic.clear()
             print('Adicionando Tarefa ...')
             sleep(1.3)
             while True:
-                cont=input('Quer adicionar outra tarefa[s/n]: ').strip().lower()
+                cont = input('Quer adicionar outra tarefa[s/n]: ').strip().lower()
                 if cont in 'sn':
                     break
                 print("Opção inválida somente [s/n]")
@@ -27,12 +28,12 @@ while True:
             if(cont[0] in 'Nn'):
                 print()
                 break
-                    
-    elif( opc == 2):
+
+    elif(opc == 2):
         print()
         print("Suas tarefas: ")
         for i, v in enumerate(tarefa):
-            print(f'{i+1}. {v['tarefas']} ==> {v['status']}')
+            print(f"{i+1}. {v['tarefas']} ==> {v['status']}")
             sleep(1)
         sleep(1)
         print()
@@ -41,24 +42,23 @@ while True:
     elif(opc == 3):
         print()
         for i, v in enumerate(tarefa):
-            print(f'{i+1}. {v}')
-        status= int(input("Qual tarefa foi realizada: "))
+            print(f"{i+1}. {v['tarefas']}")
+        status = int(input("Qual tarefa foi realizada: "))
         if 0 < status <= len(tarefa):
             tarefa[status - 1]['status'] = 'Concluido'
         else:
-             print("Número de tarefa inválido.")
+            print("Número de tarefa inválido.")
 
     elif(opc == 4):
         for i, v in enumerate(tarefa):
-            print(f'{i+1}. {v}')
-        remover= int(input("Qual tarefa deseja remover") - 1)
+            print(f"{i+1}. {v['tarefas']}")
+        remover = int(input("Qual tarefa deseja remover: "))
         if 0 < remover <= len(tarefa):
             tarefa.pop(remover - 1)
         else:
             print("Número inválido.")
-            
+
     else:
-        print('saindo...',end='')
+        print('saindo...', end='')
         sleep(1.6)
         break
-
